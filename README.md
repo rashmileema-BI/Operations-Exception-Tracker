@@ -45,7 +45,7 @@ SELECT
     SUM(CASE WHEN Project_Health = 'Delayed' THEN 1 ELSE 0 END) AS Delayed_Count,
     RANK() OVER(ORDER BY AVG(Completion_Pct) DESC) AS Performance_Rank
 FROM vw_Action_Log_Clean
-GROUP BY Business_Function;
+GROUP BY Business_Function
 
 ## 📊 Power BI Dashboard Suite
 
