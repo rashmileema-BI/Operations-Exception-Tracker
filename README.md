@@ -46,3 +46,20 @@ SELECT
     RANK() OVER(ORDER BY AVG(Completion_Pct) DESC) AS Performance_Rank
 FROM vw_Action_Log_Clean
 GROUP BY Business_Function;
+
+## 📊 Power BI Dashboard Suite
+
+The interactive Power BI report consists of 4 dedicated pages:
+* **Executive Overview Dashboard:** Global KPI scorecards, initiative status breakdown, risk distribution, and overall progress monitoring.
+* **Operational Performance Dashboard:** Departmental benchmarking, initiative owner workload analysis, and function-level completion tracking.
+* **Risk & Escalation Dashboard:** Critical path visibility, overdue project tracking, and dependency impact analysis.
+* **Strategic Insights Dashboard:** Priority vs. completion scatter matrices, project health trendlines, and decision-support modeling.
+
+## 📁 Repository Structure
+
+```text
+├── sql/
+│   └── executive_analytics_queries.sql   # Complete ETL views, rankings, and CTE queries
+├── data/
+│   └── synthetic_action_log.csv          # Ingested operational logs
+└── README.md
