@@ -118,7 +118,7 @@ df["ResolutionTimeHours"] = (
 # Direct staging to SQL Server
 push_to_sql(data)
 # Output: Loaded 2000 rows into OpsExceptionsDB.dbo.Exceptions
-
+```
 ---
 
 ## 📁 Repository Structure
