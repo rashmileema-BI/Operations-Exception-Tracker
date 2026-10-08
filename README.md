@@ -39,6 +39,37 @@ Business operations across financial processing, compliance, and systems infrast
 [ Power Apps UI ]   [ Power Automate Flow ]
  (Intake & Audit)     (Approval Routing & Notifications)
 ```
+Since `df.to_sql(..., if_exists="replace")` creates the SQL Server table without constraints or indexes, run the post-load DDL statements to enforce the primary key for Power Apps compatibility.
+
+### 1. Ingest Data via Python
+
+```python
+# Synthetic generation logic for operational records
+data = generate_rows(ROW_COUNT=2000)
+
+# Calculate operational resolution time
+df["ResolutionTimeHours"] = (
+    (df["DateResolved"] - df["DateCreated"]).dt.total_seconds() / 3600
+).round(1)
+
+# Stage directly to SQL Server
+push_to_sql(data)
+# Output: Loaded 2000 rows into OpsExceptionsDB.dbo.Exceptions
+```
+
+### 2. Apply Primary Key Constraint in SQL Server
+
+Execute the following statements in SSMS or your database client directly after loading:
+
+```sql
+-- Enforce NOT NULL on the key column
+ALTER TABLE dbo.Exceptions 
+ALTER COLUMN ExceptionID INT NOT NULL;
+
+-- Add Primary Key constraint required by Power Apps
+ALTER TABLE dbo.Exceptions 
+ADD PRIMARY KEY (ExceptionID);
+```
 ---
 
 ### Database Schema (`OpsExceptionsDB.dbo.Exceptions`)
