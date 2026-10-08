@@ -28,7 +28,6 @@ Business operations across financial processing, compliance, and systems infrast
 
 ## 📐 Data Pipeline & Architecture
 
-```text
 [ Python / Faker Generator ]
             │
             ▼ (ODBC / SQLAlchemy)
