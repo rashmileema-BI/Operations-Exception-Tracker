@@ -28,6 +28,7 @@ Business operations across financial processing, compliance, and systems infrast
 
 ## 📐 Data Pipeline & Architecture
 
+```text
 [ Python / Faker Generator ]
             │
             ▼ (ODBC / SQLAlchemy)
@@ -37,7 +38,7 @@ Business operations across financial processing, compliance, and systems infrast
             ▼               ▼
 [ Power Apps UI ]   [ Power Automate Flow ]
  (Intake & Audit)     (Approval Routing & Notifications)
-
+```
 ---
 
 ### Database Schema (`OpsExceptionsDB.dbo.Exceptions`)
@@ -78,6 +79,7 @@ The solution leverages an integrated Power Automate flow (**Operations Exception
         │                  │
 [ Update to Approved ]  [ Update to Rejected ]
 [ Email Assignee ]      [ Request Justification ]
+```
 
 * **Trigger & Conditional Branching:** When an exception is logged, the system evaluates severity. Non-high records are logged directly as `Pending` or auto-routed for standard tracking.
 * **Approval Handling:** High-severity items initiate an approval process with an automated escalation and delay-monitoring fallback.
@@ -131,3 +133,4 @@ push_to_sql(data)
 ├── power_platform/
 │   └── flows/                            # Exported Power Automate workflow definitions
 └── README.md                             # Project documentation
+```
